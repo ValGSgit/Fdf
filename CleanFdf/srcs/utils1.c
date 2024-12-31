@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vagarcia <vagarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:18:34 by vagarcia          #+#    #+#             */
-/*   Updated: 2024/12/27 12:54:11 by vagarcia         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:00:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	is_valid(char *s)
 	}
 }
 
-int	color_mode3(t_controller *params, t_dot a, t_dot b)
+int	color_mode3(t_data *params, t_pix a, t_pix b)
 {
 	if ((a.z || b.z) && a.z != b.z)
 	{
@@ -57,7 +57,7 @@ int	color_mode3(t_controller *params, t_dot a, t_dot b)
 	return (YELLOW_HEX);
 }
 
-int	color_mode4(t_controller *params, t_dot a, t_dot b)
+int	color_mode4(t_data *params, t_pix a, t_pix b)
 {
 	if ((a.z || b.z) && a.z != b.z)
 	{
@@ -72,7 +72,7 @@ int	color_mode4(t_controller *params, t_dot a, t_dot b)
 	return (params->random_color2);
 }
 
-int	color_mode5(t_dot a, t_dot b)
+int	color_mode5(t_pix a, t_pix b)
 {
 	if (a.color >= 0)
 		return (a.color);

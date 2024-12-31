@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binds_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vagarcia <vagarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:18:47 by vagarcia          #+#    #+#             */
-/*   Updated: 2024/12/27 12:53:20 by vagarcia         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:00:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_key(int key)
 		|| key == XK_Escape);
 }
 
-void	reset(t_controller *data)
+void	reset(t_data *data)
 {
 	data->scale = get_scale(data) * 25;
 	data->z_scale = get_z_scale(data);
@@ -30,7 +30,7 @@ void	reset(t_controller *data)
 	data->shift_y = data->win_y / 3;
 }
 
-void	more_keys(int key, t_controller *data)
+void	more_keys(int key, t_data *data)
 {
 	if (key == XK_Left)
 		data->shift_x -= 10;
@@ -54,20 +54,20 @@ void	more_keys(int key, t_controller *data)
 		data->scale -= get_scale(data);
 }
 
-void	do_key(int key, t_controller *data)
+void	do_key(int key, t_data *data)
 {
 	more_keys(key, data);
 	if (key == XK_Return)
 		reset(data);
-	if (key == XK_2 || key == XK_3)
+	else if (key == XK_2 || key == XK_3)
 		data->is_isometric = !data->is_isometric;
-	if (key == XK_c)
+	else if (key == XK_c)
 		change_color(data);
-	if (key == XK_Escape)
+	else if (key == XK_Escape)
 		ft_exit(data);
 }
 
-int	if_key(int key, t_controller *data)
+int	if_key(int key, t_data *data)
 {
 	if (is_key(key))
 	{

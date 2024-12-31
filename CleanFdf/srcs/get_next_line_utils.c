@@ -30,8 +30,10 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	size_t	len1;
 	size_t	len2;
 
+	if (!s1 && !s2)
+		return (NULL);
 	newstr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!s1 || !s2 || !newstr)
+	if (!newstr)
 		return (NULL);
 	len1 = 0;
 	len2 = 0;

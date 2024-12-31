@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binds.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vagarcia <vagarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:18:46 by vagarcia          #+#    #+#             */
-/*   Updated: 2024/12/27 12:53:23 by vagarcia         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:00:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	is_key(int key)
 	return (key == XK_Escape);
 }
 
-void	do_key(int key, t_controller *data)
+void	do_key(int key, t_data *data)
 {
 	if (key == XK_Escape)
 		ft_exit(data);
 }
 
-int	if_key(int key, t_controller *data)
+int	if_key(int key, t_data *data)
 {
 	if (is_key(key))
 	{

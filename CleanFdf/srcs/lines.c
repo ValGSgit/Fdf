@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vagarcia <vagarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:18:40 by vagarcia          #+#    #+#             */
-/*   Updated: 2024/12/26 11:59:49 by vagarcia         ###   ########.fr       */
+/*   Updated: 2024/12/31 13:20:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+ 
 
-void	draw_line(t_dot a, t_dot b, t_controller *param)
+void	draw_line(t_pix a, t_pix b, t_data *param)
 {
 	float	step_x;
 	float	step_y;
@@ -39,7 +40,7 @@ void	draw_line(t_dot a, t_dot b, t_controller *param)
 	}
 }
 
-void	push_image_to_window(t_controller *data)
+void	push_image_to_window(t_data *data)
 {
 	void	*previous_image;
 
@@ -53,7 +54,7 @@ void	push_image_to_window(t_controller *data)
 			&data->img.line_length, &data->img.endian);
 }
 
-void	draw(t_dot **matrix, t_controller *data)
+void	draw(t_pix **matrix, t_data *data)
 {
 	int	y;
 	int	x;
@@ -82,7 +83,7 @@ void	draw(t_dot **matrix, t_controller *data)
 	print_menu(data);
 }
 
-void	free_matrix(t_dot **matrix)
+void	free_matrix(t_pix **matrix)
 {
 	int	y;
 

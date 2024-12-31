@@ -3,53 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   coords.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vagarcia <vagarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:18:43 by vagarcia          #+#    #+#             */
-/*   Updated: 2024/12/27 12:53:53 by vagarcia         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:04:18 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-float	abs_float_value(float x)
+float	absolute_value(float x)
 {
-	if (x < 0)
-		return (-x);
-	return (x);
+    if (x < 0)
+        return (-x);
+    return (x);
 }
 
-float	max_float_value(float x, float y)
+float	max_value(float x, float y)
 {
-	if (x > y)
-		return (x);
-	return (y);
+    if (x > y)
+        return (x);
+    return (y);
 }
 
-int	coor_x(float x, t_controller *data)
+int	coordinate_x(float x, t_data *data)
 {
-	if ((int)round(x) >= data->win_x)
-		return ((int) x);
-	return ((int) round(x));
+    if ((int)round(x) >= data->win_x)
+        return ((int) x);
+    return ((int) round(x));
 }
 
-int	coor_y(float y, t_controller *data)
+int	coordinate_y(float y, t_data *data)
 {
-	if ((int) round(y) >= data->win_y)
-		return ((int) y);
-	return ((int) round(y));
+    if ((int) round(y) >= data->win_y)
+        return ((int) y);
+    return ((int) round(y));
 }
 
-void	init_coords(t_dot *a, t_dot *b, t_controller *param)
+void	init_coords(t_pix *a, t_pix *b, t_data *param)
 {
-	zoom(a, b, param);
-	if (param->is_isometric)
-	{
-		isometric(a, param->angle);
-		isometric(b, param->angle);
-	}
-	a->x += param->shift_x;
-	a->y += param->shift_y;
-	b->x += param->shift_x;
-	b->y += param->shift_y;
+    a->x *= param->scale;
+	a->y *= param->scale;
+	b->x *= param->scale;
+	b->y *= param->scale;
+	a->z *= param->z_scale;
+	b->z *= param->z_scale;
+    if (param->is_isometric)
+    {
+        a->x = (a->x - a->y) * cos(param->angle);
+	    a->y = (a->x + a->y) * sin(param->angle) - a->z;
+        b->x = (b->x - b->y) * cos(param->angle);
+	    b->y = (b->x + b->y) * sin(param->angle) - b->z;
+    }
+    a->x += param->shift_x;
+    a->y += param->shift_y;
+    b->x += param->shift_x;
+    b->y += param->shift_y;
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   scale_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vagarcia <vagarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:18:35 by vagarcia          #+#    #+#             */
-/*   Updated: 2024/12/27 12:54:49 by vagarcia         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:04:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-double	get_z_scale(t_controller *data)
+double	get_z_scale(t_data *data)
 {
 	if (data->map_scale < 50)
 		return (1.3);
@@ -29,7 +29,7 @@ double	get_z_scale(t_controller *data)
 	return (0.1);
 }
 
-double	get_scale(t_controller *data)
+double	get_scale(t_data *data)
 {
 	if (data->map_scale < 100)
 		return (3);
@@ -46,23 +46,7 @@ double	get_scale(t_controller *data)
 	return (0.2);
 }
 
-void	isometric(t_dot *dot, double angle)
-{
-	dot->x = (dot->x - dot->y) * cos(angle);
-	dot->y = (dot->x + dot->y) * sin(angle) - dot->z;
-}
-
-void	zoom(t_dot *a, t_dot *b, t_controller *param)
-{
-	a->x *= param->scale;
-	a->y *= param->scale;
-	b->x *= param->scale;
-	b->y *= param->scale;
-	a->z *= param->z_scale;
-	b->z *= param->z_scale;
-}
-
-void	print_menu(t_controller *param)
+void	print_menu(t_data *param)
 {
 	char	*menu;
 
